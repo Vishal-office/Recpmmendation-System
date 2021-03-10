@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="static/css/main.css" rel="stylesheet"> -->
+</head>
+<body>
+    {% block content%}
+        
+    <div class="container-fluid">
+        <br>
+        <form style="text-align:center" action='\data' method="POST">
+            <input type="text" name='content'>
+            <input type="submit" value="Search">
+        </form> 
+        <div class="row">
+          <div class="col-sm-9">
+            {% for vid in vidlink %}
+                <h2 style="text-align:center">{{vid.title}}</h2>
+                <iframe src='https://www.youtube.com/embed/{{vid.id}}' title="Sample Page" width="980" height="600"></iframe>
+            {% endfor %}     
+          </div>
+          <div class="col-sm-3">
+            <h1 style="text-align:center"><u>Recommended videos</u></h1>
+            {% if msg!=null%}
+                {% for post in posts %}
+                    <h3 style="text-align:center">{{post.title}}</h3>
+                    <iframe src='https://www.youtube.com/embed/{{post.id}}' title="Sample Page"></iframe>
+                {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {%endblock%}
+</body>
+</html>
